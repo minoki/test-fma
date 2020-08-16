@@ -1,0 +1,47 @@
+clang version 10.0.1 (https://github.com/Alexpux/MINGW-packages.git 94b687508346d10cec7e8c769785f73da18b4e54)
+Target: x86_64-w64-windows-gnu
+Thread model: posix
+InstalledDir: C:\msys64\mingw64\bin
+---
+mingw-w64 default / Ivy Bridge
+fma(0x8p+997, 0x8p+997, -inf): Expected -inf, but got nan.
+fma(-0xa.7c560c948ffdp+1020, 0x9.ce19e469cdb8p-1028, 0xf.708fb42f1709p-4): Expected 0x9.038d8141f8abp-4, but got 0x9.038d8141f8ab8p-4.
+fma(0x8.000000000004p+497, 0x8.8p+497, 0x8p-1077): Expected 0x8.8000000000048p+997, but got 0x8.800000000004p+997.
+fma(0x8.0000000000008p+497, 0xcp+497, -0x8p-1077): Expected 0xc.0000000000008p+997, but got 0xc.000000000001p+997.
+fma(0xf.fffffep+509, 0x8.000001p+508, -0x8p-1077): Expected 0xf.ffffffffffff8p+1020, but got inf.
+fmaf(0x8p+97, 0x8p+97, -inf): Expected -inf, but got nan.
+fmaf(0xc.25718p+122, 0xbp-144, 0x8p-152): Expected 0x8.59be1p-18, but got 0x8.59bep-18.
+fmaf(0x8.00008p+47, 0x8.8p+47, 0x8p-152): Expected 0x8.80009p+97, but got 0x8.80008p+97.
+fmaf(0x8.00001p+47, 0xcp+47, -0x8p-152): Expected 0xc.00001p+97, but got 0xc.00002p+97.
+fmaf(0xc.1debcp+1, -0xep+115, -0x9.a2084p-5): Expected -0xa.9a2e5p+120, but got -0xa.9a2e4p+120.
+---
+mingw-w64 default / Haswell
+fma(0x8p+997, 0x8p+997, -inf): Expected -inf, but got nan.
+fma(-0xa.7c560c948ffdp+1020, 0x9.ce19e469cdb8p-1028, 0xf.708fb42f1709p-4): Expected 0x9.038d8141f8abp-4, but got 0x9.038d8141f8ab8p-4.
+fma(0x8.000000000004p+497, 0x8.8p+497, 0x8p-1077): Expected 0x8.8000000000048p+997, but got 0x8.800000000004p+997.
+fma(0x8.0000000000008p+497, 0xcp+497, -0x8p-1077): Expected 0xc.0000000000008p+997, but got 0xc.000000000001p+997.
+fma(0xf.fffffep+509, 0x8.000001p+508, -0x8p-1077): Expected 0xf.ffffffffffff8p+1020, but got inf.
+fmaf(0x8p+97, 0x8p+97, -inf): Expected -inf, but got nan.
+fmaf(0xc.25718p+122, 0xbp-144, 0x8p-152): Expected 0x8.59be1p-18, but got 0x8.59bep-18.
+fmaf(0x8.00008p+47, 0x8.8p+47, 0x8p-152): Expected 0x8.80009p+97, but got 0x8.80008p+97.
+fmaf(0x8.00001p+47, 0xcp+47, -0x8p-152): Expected 0xc.00001p+97, but got 0xc.00002p+97.
+fmaf(0xc.1debcp+1, -0xep+115, -0x9.a2084p-5): Expected -0xa.9a2e5p+120, but got -0xa.9a2e4p+120.
+---
+mingw-w64 -O2 -mfma / Ivy Bridge
+TID 0 SDE-ERROR: Executed instruction not valid for specified chip (IVYBRIDGE): 0x4015ac: vfmadd213sd xmm4, xmm1, xmm3
+Image: test-fma-mingw-w64-clang-mfma.exe+0x15ac
+Function: unnamedImageEntryPoint
+Instruction bytes are: c4 e2 f1 a9 e3 
+
+---
+mingw-w64 -O2 -mfma / Haswell
+__FMA__ is defined.
+All tests passed for fma(double, double, double).
+All tests passed for fmaf(float, float, float).
+---
+#pragma STDC FP_CONTRACT
+FP_FAST_FMA is not defined.
+default: FMA is not used.
+fma: FMA is used.
+#pragma STDC FP_CONTRACT ON: FMA is used.
+#pragma STDC FP_CONTRACT OFF: FMA is not used.

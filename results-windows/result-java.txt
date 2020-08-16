@@ -1,0 +1,11 @@
+Java / Ivy Bridge
+All tests passed for Math.fma(double, double, double).
+Math.fma(0x1.fffffep23, 0x1.000004p28, 0x1.fcp5) (float): Expected 0x1.000002p52, but got 0x1.000004p52.
+Math.fma(0x1.84ae3p125, 0x1.6p-141, 0x1.0p-149) (float): Expected 0x1.0b37c2p-15, but got 0x1.0b37cp-15.
+Math.fma(0x1.00001p50, 0x1.1p50, 0x1.0p-149) (float): Expected 0x1.100012p100, but got 0x1.10001p100.
+Math.fma(0x1.000002p50, 0x1.8p50, -0x1.0p-149) (float): Expected 0x1.800002p100, but got 0x1.800004p100.
+Math.fma(0x1.83bd78p4, -0x1.cp118, -0x1.344108p-2) (float): Expected -0x1.5345cap123, but got -0x1.5345c8p123.
+---
+Java / Haswell
+All tests passed for Math.fma(double, double, double).
+All tests passed for Math.fma(float, float, float).

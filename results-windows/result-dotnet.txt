@@ -1,0 +1,12 @@
+.NET Core / Ivy Bridge
+Math.FusedMultiplyAdd(0x1.0000000000008p500, 0x1.1p500, 0x1p-1074): Expected 0x1.1000000000009p1000, but got 0x1.1000000000008p1000.
+Math.FusedMultiplyAdd(0x1.0000000000001p500, 0x1.8p500, -0x1p-1074): Expected 0x1.8000000000001p1000, but got 0x1.8000000000002p1000.
+Math.FusedMultiplyAdd(0x1.ffffffcp512, 0x1.0000002p511, -0x1p-1074): Expected 0x1.fffffffffffffp1023, but got ∞.
+MathF.FusedMultiplyAdd(0x1.84ae3p125, 0x1.6p-141, 0x1p-149): Expected 0x1.0b37c2p-15, but got 0x1.0b37cp-15.
+MathF.FusedMultiplyAdd(0x1.00001p50, 0x1.1p50, 0x1p-149): Expected 0x1.100012p100, but got 0x1.10001p100.
+MathF.FusedMultiplyAdd(0x1.000002p50, 0x1.8p50, -0x1p-149): Expected 0x1.800002p100, but got 0x1.800004p100.
+MathF.FusedMultiplyAdd(0x1.83bd78p4, -0x1.cp118, -0x1.344108p-2): Expected -0x1.5345cap123, but got -0x1.5345c8p123.
+---
+.NET Core / Haswell
+Math.FusedMultiplyAdd: All tests passed.
+MathF.FusedMultiplyAdd: All tests passed.
