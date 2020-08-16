@@ -1,17 +1,23 @@
 #!/bin/bash
 set -e
-export sde=$HOME/sde-external-8.56.0-2020-07-05-win/sde.exe
+sde=$(which sde)
 gcc -o test-fma-mingw-w64.exe test-fma.c
 gcc -o test-fma-mingw-w64-mfma.exe -O2 -mfma test-fma.c
+gcc -o contract-mingw-w64.exe -O2 -mfma contract.c
 resultfile=result-mingw-w64.txt
-echo "mingw-w64 default / Ivy Bridge" > result-mingw-w64.txt
-$sde -ivb -- test-fma-mingw-w64.exe >> result-mingw-w64.txt
-echo "---" >> result-mingw-w64.txt
-echo "mingw-w64 default / Haswell" >> result-mingw-w64.txt
-$sde -hsw -- test-fma-mingw-w64.exe >> result-mingw-w64.txt
-echo "---" >> result-mingw-w64.txt
-echo "mingw-w64 -O2 -mfma / Ivy Bridge" >> result-mingw-w64.txt
-($sde -ivb -- test-fma-mingw-w64-mfma.exe || true) >> result-mingw-w64.txt 2>&1
-echo "---" >> result-mingw-w64.txt
-echo "mingw-w64 -O2 -mfma / Haswell" >> result-mingw-w64.txt
-$sde -hsw -- test-fma-mingw-w64-mfma.exe >> result-mingw-w64.txt
+gcc --version > $resultfile
+echo "---" >> $resultfile
+echo "mingw-w64 default / Ivy Bridge" >> $resultfile
+$sde -ivb -- test-fma-mingw-w64.exe >> $resultfile
+echo "---" >> $resultfile
+echo "mingw-w64 default / Haswell" >> $resultfile
+$sde -hsw -- test-fma-mingw-w64.exe >> $resultfile
+echo "---" >> $resultfile
+echo "mingw-w64 -O2 -mfma / Ivy Bridge" >> $resultfile
+($sde -ivb -- test-fma-mingw-w64-mfma.exe || true) >> $resultfile 2>&1
+echo "---" >> $resultfile
+echo "mingw-w64 -O2 -mfma / Haswell" >> $resultfile
+$sde -hsw -- test-fma-mingw-w64-mfma.exe >> $resultfile
+echo "---" >> $resultfile
+echo "#pragma STDC FP_CONTRACT" >> $resultfile
+$sde -hsw -- contract-mingw-w64.exe >> $resultfile

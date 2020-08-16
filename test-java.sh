@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-sde=$HOME/sde-external-8.56.0-2020-07-05-win/sde.exe
+sde=$(which sde64 || which sde)
 javac TestFMA.java
 resultfile=result-java.txt
 echo "Java / Ivy Bridge" > $resultfile

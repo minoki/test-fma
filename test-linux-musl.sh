@@ -1,10 +1,13 @@
 #!/bin/bash
 set -e
-export sde=$HOME/sde-external-8.56.0-2020-07-05-lin/sde64
+sde=$(which sde64 || which sde)
 musl-gcc -o test-fma-linux-musl test-fma.c -lm
 musl-gcc -o test-fma-linux-musl-mfma -O2 -mfma test-fma.c -lm
+musl-gcc -o contract-linux-musl -O2 -mfma contract.c -lm
 resultfile=result-linux-musl.txt
-echo "Linux musl default / Ivy Bridge" > $resultfile
+musl-gcc --version > $resultfile
+echo "---" >> $resultfile
+echo "Linux musl default / Ivy Bridge" >> $resultfile
 $sde -ivb -- ./test-fma-linux-musl >> $resultfile
 echo "---" >> $resultfile
 echo "Linux musl default / Haswell" >> $resultfile
@@ -15,3 +18,6 @@ echo "Linux musl -O2 -mfma / Ivy Bridge" >> $resultfile
 echo "---" >> $resultfile
 echo "Linux musl -O2 -mfma / Haswell" >> $resultfile
 $sde -hsw -- ./test-fma-linux-musl-mfma >> $resultfile
+echo "---" >> $resultfile
+echo "#pragma STDC FP_CONTRACT" >> $resultfile
+$sde -hsw -- ./contract-linux-musl >> $resultfile
