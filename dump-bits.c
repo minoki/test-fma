@@ -67,7 +67,22 @@ int main(int argc, char *argv[])
             float expected = cases_f[i].expected;
             printf("new uint[] {0x%08" PRIX32 "u, 0x%08" PRIX32 "u, 0x%08" PRIX32 "u, 0x%08" PRIX32 "u},\n", float_to_int32(a), float_to_int32(b), float_to_int32(c), float_to_int32(expected));
         }
+    } else if (argc > 1 && strcmp(argv[1], "rust") == 0) {
+        for (size_t i = 0; i < sizeof(cases_d) / sizeof(cases_d[0]); ++i) {
+            double a = cases_d[i].a;
+            double b = cases_d[i].b;
+            double c = cases_d[i].c;
+            double expected = cases_d[i].expected;
+            printf("[0x%016" PRIX64 "u64, 0x%016" PRIX64 "u64, 0x%016" PRIX64 "u64, 0x%016" PRIX64 "u64],\n", double_to_int64(a), double_to_int64(b), double_to_int64(c), double_to_int64(expected));
+        }
+        for (size_t i = 0; i < sizeof(cases_f) / sizeof(cases_f[0]); ++i) {
+            float a = cases_f[i].a;
+            float b = cases_f[i].b;
+            float c = cases_f[i].c;
+            float expected = cases_f[i].expected;
+            printf("[0x%08" PRIX32 "u32, 0x%08" PRIX32 "u32, 0x%08" PRIX32 "u32, 0x%08" PRIX32 "u32],\n", float_to_int32(a), float_to_int32(b), float_to_int32(c), float_to_int32(expected));
+        }
     } else {
-        printf("Usage: %s cs\n", argv[0]);
+        printf("Usage: %s (cs|rust)\n", argv[0]);
     }
 }
