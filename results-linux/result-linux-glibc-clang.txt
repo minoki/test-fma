@@ -1,0 +1,31 @@
+clang version 10.0.0-4ubuntu1 
+Target: x86_64-pc-linux-gnu
+Thread model: posix
+InstalledDir: /usr/bin
+---
+Linux glibc + clang default / Ivy Bridge
+All tests passed for fma(double, double, double).
+All tests passed for fmaf(float, float, float).
+---
+Linux glibc + clang default / Haswell
+All tests passed for fma(double, double, double).
+All tests passed for fmaf(float, float, float).
+---
+Linux glibc + clang -O2 -mfma / Ivy Bridge
+TID 0 SDE-ERROR: Executed instruction not valid for specified chip (IVYBRIDGE): 0x4011ac: vfmadd213ss xmm4, xmm0, xmm2
+Image: test-fma-linux-glibc-clang-mfma+0x1ac (in multi-region image, region# 1)
+Function: main
+Instruction bytes are: c4 e2 79 a9 e2 
+
+---
+Linux glibc + clang -O2 -mfma / Haswell
+__FMA__ is defined.
+All tests passed for fma(double, double, double).
+All tests passed for fmaf(float, float, float).
+---
+#pragma STDC FP_CONTRACT
+FP_FAST_FMA is not defined.
+default: FMA is not used.
+fma: FMA is used.
+#pragma STDC FP_CONTRACT ON: FMA is used.
+#pragma STDC FP_CONTRACT OFF: FMA is not used.
