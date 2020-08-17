@@ -1,0 +1,22 @@
+FreeBSD clang version 8.0.1 (tags/RELEASE_801/final 366581) (based on LLVM 8.0.1)
+Target: x86_64-unknown-freebsd12.1
+Thread model: posix
+InstalledDir: /usr/bin
+---
+FreeBSD clang default
+FP_FAST_FMAF is defined.
+All tests passed for fma(double, double, double).
+All tests passed for fmaf(float, float, float).
+---
+FreeBSD clang -O2 -mfma
+FP_FAST_FMAF is defined.
+__FMA__ is defined.
+All tests passed for fma(double, double, double).
+All tests passed for fmaf(float, float, float).
+---
+#pragma STDC FP_CONTRACT
+FP_FAST_FMA is not defined.
+default: FMA is not used.
+fma: FMA is used.
+#pragma STDC FP_CONTRACT ON: FMA is used.
+#pragma STDC FP_CONTRACT OFF: FMA is not used.

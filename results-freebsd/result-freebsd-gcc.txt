@@ -1,0 +1,26 @@
+gcc10 (FreeBSD Ports Collection) 10.1.0
+Copyright (C) 2020 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+---
+FreeBSD gcc default
+FP_FAST_FMAF is defined.
+All tests passed for fma(double, double, double).
+All tests passed for fmaf(float, float, float).
+---
+FreeBSD gcc -O2 -mfma
+FP_FAST_FMAF is defined.
+__FMA__ is defined.
+All tests passed for fma(double, double, double).
+All tests passed for fmaf(float, float, float).
+---
+#pragma STDC FP_CONTRACT
+FP_FAST_FMA is not defined.
+default: FMA is used.
+fma: FMA is used.
+#pragma STDC FP_CONTRACT ON: FMA is used.
+#pragma STDC FP_CONTRACT OFF: FMA is used.
+-ffp-contract=fast: FMA is used.
+-ffp-contract=on: FMA is not used.
+-ffp-contract=off: FMA is not used.
