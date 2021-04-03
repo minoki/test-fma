@@ -44,9 +44,9 @@ int main(void)
     {
         bool all_tests_passed = true;
         for (size_t i = 0; i < sizeof(cases_d) / sizeof(cases_d[0]); ++i) {
-            double a = cases_d[i].a;
-            double b = cases_d[i].b;
-            double c = cases_d[i].c;
+            volatile double a = cases_d[i].a;
+            volatile double b = cases_d[i].b;
+            volatile double c = cases_d[i].c;
             double expected = cases_d[i].expected;
             double result = fma(a, b, c);
             bool same = isnan(expected) ? isnan(result) : expected == result && signbit(expected) == signbit(result);
@@ -62,9 +62,9 @@ int main(void)
     {
         bool all_tests_passed = true;
         for (size_t i = 0; i < sizeof(cases_f) / sizeof(cases_f[0]); ++i) {
-            float a = cases_f[i].a;
-            float b = cases_f[i].b;
-            float c = cases_f[i].c;
+            volatile float a = cases_f[i].a;
+            volatile float b = cases_f[i].b;
+            volatile float c = cases_f[i].c;
             float expected = cases_f[i].expected;
             float result = fmaf(a, b, c);
             bool same = isnan(expected) ? isnan(result) : expected == result && signbit(expected) == signbit(result);
