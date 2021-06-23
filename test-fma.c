@@ -6,7 +6,7 @@ struct fma_test_case_d
 {
     double a, b, c, expected;
 }
-static const cases_d[] = {
+static volatile const cases_d[] = {
     {0x1p1000, 0x1p1000, -INFINITY, -INFINITY},
     {-0x1.4f8ac19291ffap1023, 0x1.39c33c8d39b7p-1025, 0x1.ee11f685e2e12p-1, 0x1.2071b0283f156p-1},
     {0x1.0000000000008p500, 0x1.1p500, 0x1p-1074, 0x1.1000000000009p1000},
@@ -18,7 +18,7 @@ struct fma_test_case_f
 {
     float a, b, c, expected;
 }
-static const cases_f[] = {
+static volatile const cases_f[] = {
     {0x1p100f, 0x1p100f, -INFINITY, -INFINITY},
     {0x1.fffffep23f, 0x1.000004p28f, 0x1.fcp5f, 0x1.000002p52f},
     {0x1.84ae3p125f, 0x1.6p-141f, 0x1p-149f, 0x1.0b37c2p-15f},
