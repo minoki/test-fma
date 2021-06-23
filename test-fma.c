@@ -31,15 +31,22 @@ int main(void)
 {
 #if defined(FP_FAST_FMA)
     puts("FP_FAST_FMA is defined.");
+#else
+    puts("FP_FAST_FMA is not defined.");
 #endif
 #if defined(FP_FAST_FMAF)
     puts("FP_FAST_FMAF is defined.");
+#else
+    puts("FP_FAST_FMAF is not defined.");
 #endif
 #if defined(__FMA__)
     puts("__FMA__ is defined.");
 #endif
 #if defined(__FMA4__)
     puts("__FMA4__ is defined.");
+#endif
+#if defined(_MSC_VER) && defined(_M_X64)
+    printf("_get_FMA3_enable() = %s\n", _get_FMA3_enable() ? "true" : "false");
 #endif
     {
         bool all_tests_passed = true;
